@@ -1,0 +1,38 @@
+class RomanToInteger{
+    public int romanToInt(String s) {
+    
+        int value = 0;
+        List<String> character = new ArrayList<String>(Arrays.asList("0","I","II","III","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M"));
+        
+        List<Integer> num = new ArrayList<Integer>(Arrays.asList(0,1,2,3,4,5,9,10,40,50,90,100,400,500,900,1000));
+        
+        if(character.indexOf(s) != -1)
+        {
+            return num.get(character.indexOf(s));
+        }
+        
+        String roman;
+        
+        for(int i=0; i<s.length();i++)
+        {   
+            if(i+1<s.length())
+            {   
+                roman = String.valueOf(s.charAt(i))+String.valueOf(s.charAt(i+1));
+                if(character.indexOf(roman) != -1)
+                {
+                    value = value+num.get(character.indexOf(roman));
+                    i = i+1;
+                    continue;
+                }
+            }
+            if( i<s.length() && character.indexOf(String.valueOf(s.charAt(i))) != -1)
+            {
+                    value = value+num.get(character.indexOf(String.valueOf(s.charAt(i))));
+            }
+        }
+        return value;
+    }
+}
+
+
+
